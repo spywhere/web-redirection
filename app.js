@@ -55,5 +55,5 @@ app.use(async (context) => {
 });
 
 app.listen(port, () => {
-  console.log('listening on port', port);
+  console.info('listening on port', port);
 });
