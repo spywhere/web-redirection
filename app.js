@@ -25,8 +25,7 @@ const router = new Router();
 
 router.use(async (ctx, next) => {
   ctx.state = {
-    keyword: undefined,
-    url: undefined
+    keyword: undefined
   };
   return next();
 });
@@ -34,16 +33,36 @@ router.get('/', async (ctx) => {
   await ctx.render('index');
 });
 
-router.get('/:keyword', async (ctx) => {
-  const cookies = ctx.cookie || {};
-  const keyword = ctx.params.keyword;
+function getUrl(cookies, keyword, query) {
   const url = cookies[keyword];
+  if (!url || typeof(url) !== 'string') {
+    return url;
+  }
+
+  return url.replace('%s', query || '');
+}
+
+router.get('/:keyword', async (ctx) => {
+  const keyword = ctx.params.keyword;
+  const url = getUrl(ctx.cookie || {}, keyword);
 
   if (url) {
     ctx.redirect(url);
     ctx.body = '';
   } else {
-    await ctx.render('index', { keyword, url });
+    await ctx.render('index', { keyword });
+  }
+});
+
+router.get('/:keyword/:query', async (ctx) => {
+  const keyword = ctx.params.keyword;
+  const url = getUrl(ctx.cookie || {}, keyword, ctx.params.query);
+
+  if (url) {
+    ctx.redirect(url);
+    ctx.body = '';
+  } else {
+    await ctx.render('index', { keyword });
   }
 });
 
