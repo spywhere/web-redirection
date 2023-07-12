@@ -1,19 +1,24 @@
 {
-  "name": "web-redirect",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "web-redirection",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node .",
+    "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://spywhere@github.com/spywhere/web-redirection.git"
+  },
   "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "express": "^4.18.2",
-    "helmet": "^7.0.0"
+    "@koa/router": "^12.0.0",
+    "koa": "^2.14.2",
+    "koa-compress": "^5.1.1",
+    "koa-cookie": "^1.0.0",
+    "koa-helmet": "^7.0.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
