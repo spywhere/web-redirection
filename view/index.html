@@ -1,0 +1,12 @@
+<div>
+  <p class="title">Web Redirections</p>
+  <% if (keyword) { %>
+  <p class="error">Redirection for &quot;<%= keyword %>&quot; is invalid. Got &quot;<%= url %>&quot;</p>
+  <% } %>
+  <p>Update the cookie for this site to have it redirected to the target URL.</p>
+  <p class="mono">
+    static=https://example.com;<br />
+    dynamic=https://example.com/%s;
+  </p>
+  <p>Then browse to this website /:static or /:dynamic/:query to be redirected accordingly.</p>
+</div>
