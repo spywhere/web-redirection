@@ -14,10 +14,9 @@ app.get('/', (req, res) => {
 
 app.get('/:keyword', (req, res) => {
   const baseUrl = `${req.protocol}://${req.get('host')}/`;
-  const cookies = JSON.stringify(req.cookies, undefined, 2);
-  const url = cookies[req.params.keyword] || baseUrl;
+  const url = req.cookies[req.params.keyword] || baseUrl;
 
-  console.log(cookies);
+  console.log(JSON.stringify(req.cookies, undefined, 2));
 
   res.redirect(url);
 });
