@@ -9,4 +9,12 @@
     dynamic=https://example.com/%s;
   </p>
   <p>Then go to <span class="mono"><%= self %>/:static</span> or <span class="mono"><%= self %>/:dynamic/:query</span> to be redirected accordingly.</p>
+  <% if (entries) { %>
+    <p class="subtitle">Available redirections:</p>
+    <table class="mono">
+    <% entries.forEach(([key, url], index) => { %>
+      <tr><td><%= key %></td><td><i class="arrow"></i></td><td><%= url %></td></tr>
+    <% }); %>
+    </table>
+  <% } %>
 </div>
