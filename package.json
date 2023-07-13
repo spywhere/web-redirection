@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon -w .",
+    "dev": "nodemon -w . -e js,json,html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +19,6 @@
     "is-url": "^1.2.4",
     "koa": "^2.14.2",
     "koa-compress": "^5.1.1",
-    "koa-cookie": "^1.0.0",
     "koa-ejs": "^4.3.0",
     "koa-helmet": "^7.0.2"
   },

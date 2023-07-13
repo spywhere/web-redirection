@@ -4,10 +4,10 @@ import * as url from 'url';
 import Koa from 'koa';
 import helmet from 'koa-helmet';
 import compress from 'koa-compress';
-import cookie from 'koa-cookie';
 import render from 'koa-ejs';
 import Router from '@koa/router';
 
+import cookie from './cookie.js';
 import { redirect, getEntries } from './redirect.js'
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
@@ -17,7 +17,7 @@ const app = new Koa();
 
 app.use(helmet());
 app.use(compress());
-app.use(cookie.default());
+app.use(cookie());
 render(app, {
   root: path.join(__dirname, 'view'),
   caches: false
