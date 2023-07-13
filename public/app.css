@@ -47,7 +47,8 @@ table {
 }
 
 .arrow {
-  border: solid black;
+  border-style: solid;
+  border-color: #222;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
@@ -60,4 +61,19 @@ ul {
   display: inline-block;
   margin-block: 0;
   padding-inline-start: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #ddd;
+    background: #090c10;
+  }
+
+  .error {
+    background: #611;
+  }
+
+  .arrow {
+    border-color: #ddd;
+  }
 }
