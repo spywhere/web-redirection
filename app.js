@@ -5,8 +5,10 @@ import Koa from 'koa';
 import helmet from 'koa-helmet';
 import compress from 'koa-compress';
 import cookie from 'koa-cookie';
-import render from '@koa/ejs';
+import render from 'koa-ejs';
 import Router from '@koa/router';
+
+import redirect from './redirect.js'
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
@@ -29,40 +31,14 @@ router.use(async (ctx, next) => {
   };
   return next();
 });
-router.get('/', async (ctx) => {
-  await ctx.render('index');
-});
 
-function getUrl(cookies, keyword, query) {
-  const url = cookies[keyword];
-  if (!url || typeof(url) !== 'string') {
-    return url;
-  }
-
-  return url.replace('%s', query || '');
-}
-
-async function tryRedirect(ctx, url, keyword) {
-  if (url) {
-    // TODO: renew cookie expiration time
-    ctx.redirect(url);
-    ctx.body = '';
-  } else {
-    await ctx.render('index', { keyword });
-  }
-}
-
-router.get('/:keyword', async (ctx) => {
-  const { keyword } = ctx.params;
-  const url = getUrl(ctx.cookie || {}, keyword);
-  return tryRedirect(ctx, url, keyword);
-});
-
-router.get('/:keyword/:query', async (ctx) => {
-  const { keyword, query } = ctx.params;
-  const url = getUrl(ctx.cookie || {}, keyword, query);
-  return tryRedirect(ctx, url, keyword);
-});
+router.get('/', async (ctx) => ctx.render('index'));
+router.get('/:keyword', async (ctx) => redirect(
+  ctx, ctx.cookie || {}, ctx.params.keyword
+));
+router.get('/:keyword/:query', async (ctx) => redirect(
+  ctx, ctx.cookie || {}, ctx.params.keyword, ctx.params.query
+));
 
 app.use(router.routes()).use(router.allowedMethods());
 
