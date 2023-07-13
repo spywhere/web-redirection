@@ -26,9 +26,11 @@ render(app, {
 const router = new Router();
 
 router.use(async (ctx, next) => {
+  const req = ctx.request;
   ctx.state = {
     error: undefined,
-    entries: undefined
+    entries: undefined,
+    self: `${ req.protocol }://${ req.host }`,
   };
   return next();
 });
