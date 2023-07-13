@@ -1,0 +1,63 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #222;
+  background: #f6f3ef;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 90vh;
+}
+
+.title {
+  font-size: 4vw;
+}
+
+.subtitle {
+  font-size: 1.5em;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 2em;
+  }
+  .subtitle {
+    font-size: 1.5em;
+  }
+}
+
+.error {
+  background: #c22;
+  color: #ddd;
+  padding: 1vh;
+
+  border-radius: 2vh;
+}
+
+.mono {
+  font-family: monospace, monospace;
+}
+
+table {
+  width: 40vw;
+  margin: auto;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+ul {
+  display: inline-block;
+  margin-block: 0;
+  padding-inline-start: 0;
+}

@@ -6,6 +6,7 @@ import helmet from 'koa-helmet';
 import compress from 'koa-compress';
 import render from 'koa-ejs';
 import Router from '@koa/router';
+import serve from 'koa-static';
 
 import cookie from './cookie.js';
 import { redirect, getEntries } from './redirect.js'
@@ -22,6 +23,7 @@ render(app, {
   root: path.join(__dirname, 'view'),
   caches: false
 });
+app.use(serve(path.join(__dirname, 'public')));
 
 const router = new Router();
 
