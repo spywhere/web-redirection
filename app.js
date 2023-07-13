@@ -42,28 +42,26 @@ function getUrl(cookies, keyword, query) {
   return url.replace('%s', query || '');
 }
 
-router.get('/:keyword', async (ctx) => {
-  const keyword = ctx.params.keyword;
-  const url = getUrl(ctx.cookie || {}, keyword);
-
+async function tryRedirect(ctx, url, keyword) {
   if (url) {
+    // TODO: renew cookie expiration time
     ctx.redirect(url);
     ctx.body = '';
   } else {
     await ctx.render('index', { keyword });
   }
+}
+
+router.get('/:keyword', async (ctx) => {
+  const { keyword } = ctx.params;
+  const url = getUrl(ctx.cookie || {}, keyword);
+  return tryRedirect(ctx, url, keyword);
 });
 
 router.get('/:keyword/:query', async (ctx) => {
-  const keyword = ctx.params.keyword;
-  const url = getUrl(ctx.cookie || {}, keyword, ctx.params.query);
-
-  if (url) {
-    ctx.redirect(url);
-    ctx.body = '';
-  } else {
-    await ctx.render('index', { keyword });
-  }
+  const { keyword, query } = ctx.params;
+  const url = getUrl(ctx.cookie || {}, keyword, query);
+  return tryRedirect(ctx, url, keyword);
 });
 
 app.use(router.routes()).use(router.allowedMethods());
