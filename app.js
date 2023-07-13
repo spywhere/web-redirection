@@ -34,10 +34,10 @@ router.use(async (ctx, next) => {
 
 router.get('/', async (ctx) => ctx.render('index'));
 router.get('/:keyword', async (ctx) => redirect(
-  ctx, ctx.cookie || {}, ctx.params.keyword
+  ctx, ctx.cookie, ctx.params.keyword
 ));
 router.get('/:keyword/:query', async (ctx) => redirect(
-  ctx, ctx.cookie || {}, ctx.params.keyword, ctx.params.query
+  ctx, ctx.cookie, ctx.params.keyword, ctx.params.query
 ));
 
 app.use(router.routes()).use(router.allowedMethods());

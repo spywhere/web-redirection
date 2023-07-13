@@ -1,7 +1,7 @@
 <div>
   <p class="title">Web Redirections</p>
-  <% if (keyword) { %>
-  <p class="error">Redirection for &quot;<%= keyword %>&quot; is either missing or invalid.</p>
+  <% if (error) { %>
+  <p class="error"><%= error %></p>
   <% } %>
   <p>Update the cookie for this site to have it redirected to the target URL.</p>
   <p class="mono">
