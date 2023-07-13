@@ -8,7 +8,7 @@ import cookie from 'koa-cookie';
 import render from 'koa-ejs';
 import Router from '@koa/router';
 
-import redirect from './redirect.js'
+import { redirect, getEntries } from './redirect.js'
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
@@ -27,12 +27,15 @@ const router = new Router();
 
 router.use(async (ctx, next) => {
   ctx.state = {
-    keyword: undefined
+    error: undefined,
+    entries: undefined
   };
   return next();
 });
 
-router.get('/', async (ctx) => ctx.render('index'));
+router.get('/', async (ctx) => ctx.render('index', {
+  entries: getEntries(ctx.cookie)
+}));
 router.get('/:keyword', async (ctx) => redirect(
   ctx, ctx.cookie, ctx.params.keyword
 ));
