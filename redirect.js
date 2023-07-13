@@ -58,6 +58,13 @@ function getUrl(cookies, keyword, query) {
       };
     }
 
+    if (newUrl === url) {
+      return {
+        error: ERRORS.RECURSE_ALIAS(keyword),
+        entries: filterCookies
+      };
+    }
+
     url = newUrl;
   }
 
