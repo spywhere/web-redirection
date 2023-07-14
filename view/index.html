@@ -15,7 +15,7 @@
     <li>app.css</li>
     <li>app.js</li>
   </ul>
-  <% if (entries) { %>
+  <% if (entries && entries.length > 0) { %>
     <p class="subtitle">Available redirections:</p>
     <table class="mono">
     <% entries.forEach(([key, url], index) => { %>

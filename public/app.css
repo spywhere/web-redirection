@@ -9,7 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .title {
@@ -42,8 +42,12 @@ body {
 }
 
 table {
-  width: 40vw;
+  min-width: 40vw;
   margin: auto;
+}
+
+td {
+  min-width: 3vw;
 }
 
 .arrow {
